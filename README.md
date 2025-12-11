@@ -57,3 +57,4 @@ If no `Access-Control-Allow-Origin` header appears, you must use the proxy in br
 
 - The uploader surfaces precise errors. If a KML contains only NetworkLinks and external fetches fail, you will see: `KML tidak memiliki fitur lokal dan tidak ada NetworkLink yang berhasil dimuat`.
 - If your API requires auth, extend the proxy to forward `Authorization` headers, and add support in the app as needed.
+# imsar
