@@ -3,7 +3,7 @@
     <div class="login-card">
       <!-- Logo and Title -->
       <div class="login-header">
-        <img src="/Users/rafiyahyaacpridan/Documents/layout_basarnas/src/assets/basarnas.png" class="login-logo" alt="BASARNAS Logo" />
+        <img :src="basarnasLogo" class="login-logo" alt="BASARNAS Logo" />
         <h1 class="login-title">Sistem Monitoring Kapal</h1>
         <p class="login-subtitle">Badan Nasional Pencarian dan Pertolongan</p>
       </div>
@@ -85,6 +85,8 @@
 <script setup>
 import { ref } from 'vue'
 import { authClient } from '../auth-client'
+// Resolve asset via Vite to work in all environments
+const basarnasLogo = new URL('../assets/basarnas.png', import.meta.url).href
 
 const email = ref('')
 const password = ref('')

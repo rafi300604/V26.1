@@ -3,7 +3,7 @@
     <!-- Header (User only) -->
     <header class="header" style="width: 100%; box-sizing: border-box;">
       <div class="header-left">
-        <img src="/Users/rafiyahyaacpridan/Documents/layout_basarnas/src/assets/basarnas.png" class="logo" />
+        <img src="./assets/basarnas.png" class="logo" />
         <span class="header-title">SISTEM MONITORING KAPAL</span>
       </div>
       <div class="header-right">

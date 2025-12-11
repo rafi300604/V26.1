@@ -3,7 +3,7 @@
     <!-- Header styled like AppUser with embedded admin tabs -->
     <header class="header" style="width: 100%; box-sizing: border-box;">
       <div class="header-left">
-        <img src="/Users/rafiyahyaacpridan/Documents/layout_basarnas/src/assets/basarnas.png" class="logo" alt="Basarnas" />
+        <img src="./assets/basarnas.png" class="logo" alt="Basarnas" />
         <span class="header-title">SISTEM MONITORING</span>
         <div class="admin-tabs" style="margin-left: 20px;">
           <button type="button" class="admin-tab" :class="{ active: vm.adminTab === 'home' }" @click="vm.adminTab = 'home'">
