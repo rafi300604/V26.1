@@ -2255,13 +2255,15 @@ Ingin menghapus SEMUA waypoint kapal ini dari database?`;
       }
     },
     initializeMap() {
-      if (this.map) return; // Prevent re-initialization
-      const container = document.getElementById('map');
-      if (!container) return;
-      this.map = L.map(container, {
+      try {
+        if (typeof window === 'undefined' || typeof document === 'undefined') return;
+        if (this.map) return; // Prevent re-initialization
+        const container = document.getElementById('map');
+        if (!container) return;
+        this.map = L.map(container, {
         zoomControl: true,
         attributionControl: false,
-      }).setView([-2, 118], 5);
+        }).setView([-2, 118], 5);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "",
@@ -2272,25 +2274,32 @@ Ingin menghapus SEMUA waypoint kapal ini dari database?`;
 
       // Tambahkan event listener untuk zoomend agar popup tetap terbuka saat zoom
       this.map.on('zoomend', () => {
-        if (this.selectedShip) {
-          const marker = this.markers.find(
-            (m) => m.getLatLng().lat === this.selectedShip.lat && m.getLatLng().lng === this.selectedShip.lng
-          );
-          if (marker && !marker.isPopupOpen()) {
-            marker.openPopup();
+        try {
+          if (this.selectedShip) {
+            const marker = this.markers.find(
+              (m) => m.getLatLng().lat === this.selectedShip.lat && m.getLatLng().lng === this.selectedShip.lng
+            );
+            if (marker && !marker.isPopupOpen()) {
+              marker.openPopup();
+            }
           }
-        }
+        } catch (_) {}
       });
 
       // Tambahkan event listener untuk moveend agar markers tetap stabil
       this.map.on('moveend', () => {
-        // Force marker repositioning if needed
-        this.markers.forEach(marker => {
-          if (this.map.hasLayer(marker)) {
-            marker.update();
-          }
-        });
+        try {
+          // Force marker repositioning if needed
+          this.markers.forEach(marker => {
+            if (this.map && this.map.hasLayer(marker)) {
+              marker.update();
+            }
+          });
+        } catch (_) {}
       });
+      } catch (e) {
+        console.warn('initializeMap guarded error:', e);
+      }
     },
     // Ensure non-admin map height equals admin's by subtracting admin offset plus header block size
     applyUserGridHeight() {
